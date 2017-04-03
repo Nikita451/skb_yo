@@ -1,0 +1,84 @@
+import React, { PropTypes } from 'react';
+import importcss from 'importcss';
+import { inject } from 'mobx-react';
+
+import {
+  Grid,
+  Row,
+  Col,
+  Button,
+} from 'react-bootstrap';
+
+import Component from 'lsk-general/General/Component';
+//import Slide from '../Slide';
+import Slide from 'lsk-general/General/Slide';
+import Link from 'lsk-general/General/Link';
+
+@inject('config', 'app')
+@importcss(require('./HomePage.css'))
+export default class HomePage extends Component {
+  static propTypes = {
+    config: PropTypes.object.isRequired,
+  }
+  render() {
+    const { site } = this.props.config;
+    const articles = [ 
+      {header:"Статья 1"},
+      {header:"Статья 1"},
+      {header:"Статья 1"},
+      {header:"Статья 1"},
+      {header:"Статья 1"},
+      {header:"Статья 1"},
+      {header:"Статья 1"},
+    ]
+    return (
+      <div styleName="da">
+      <Slide
+        //full
+        //video="http://skill-branch.ru/video-background.webm"
+        image="http://2.bp.blogspot.com/-s5WkB2C1-ig/UiHMU1IbZxI/AAAAAAAAAwI/ooOZcg35OtA/s1600/New+York+City+Wallpapers.jpg"
+        overlay
+      >
+        <Grid>
+          <Row>
+            <Col md={12} mdOffset={0}>
+             <h1>Блок путещественника</h1>
+             <p styleName="description">
+                Здравствуйте, меня зовут Артур Пирожков. <br /> 
+                Я самый красивый человек на планете. <br />
+                И, неудивительно, что самый красивый человек на планете <br />
+                бывает в самых красивых местах. <br />
+                Я посетил девятьсот сорок десять стран! <br />
+             </p>
+             <p styleName="toReg">
+             {!this.props.app.auth.isAuth && 
+              <Link href="/auth/signup" className="btn btn-success">Зарегистрироваться</Link>
+             }
+             {this.props.app.auth.isAuth &&
+               <p> Добро пожаловать в Блог, {this.props.app.user.name} ! </p>
+             }
+             </p>
+            </Col>
+          </Row>
+        </Grid>
+      </Slide>
+      <Slide
+        
+        image="http://lawedding.com.ua/content/documents/8/759/image/bg-blue.jpg"
+        overlay
+      >
+        <Grid>
+          <Row>
+            <Col md={12} mdOffset={0}>
+              <div styleName='articles'>
+                <h3>Список последних статей</h3>
+                {articles.map(art => <a>{art.header}</a> )}
+              </div>
+            </Col>
+          </Row>
+        </Grid>
+      </Slide>
+      </div>
+    );
+  }
+}

@@ -1,0 +1,13 @@
+FROM node:6.9.2
+RUN npm i -g yarn
+
+VOLUME ["/tmp/.cache", "/root/.cache"]
+
+WORKDIR /app
+CMD sh -c "echo \"Start\" && \
+  NODE_ENV=development yarn install && \
+  NODE_ENV=production yarn run build && \
+  cd build && NODE_ENV=production yarn install"
+
+#  cd .. && \
+#  cp -R src/public/* build/public
