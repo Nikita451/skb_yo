@@ -74,4 +74,12 @@ export default class App extends ReactApp {
     return routes;
   }
 
+  async getHtmlProps(req) {
+    let posts = await this.models.Post.find({})
+    
+    let obj = await super.getHtmlProps(req)
+    obj.ctx.rootState.posts = posts.map( p => p.toJSON() )
+    return obj;
+  }
+
 }

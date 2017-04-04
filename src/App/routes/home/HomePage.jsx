@@ -14,7 +14,7 @@ import Component from 'lsk-general/General/Component';
 import Slide from 'lsk-general/General/Slide';
 import Link from 'lsk-general/General/Link';
 
-@inject('config', 'app')
+@inject('config', 'app', 'posts')
 @importcss(require('./HomePage.css'))
 export default class HomePage extends Component {
   static propTypes = {
@@ -22,6 +22,7 @@ export default class HomePage extends Component {
   }
   render() {
     const { site } = this.props.config;
+    const {posts} = this.props.posts
     const articles = [ 
       {header:"Статья 1"},
       {header:"Статья 1"},
@@ -72,7 +73,7 @@ export default class HomePage extends Component {
             <Col md={12} mdOffset={0}>
               <div styleName='articles'>
                 <h3>Список последних статей</h3>
-                {articles.map(art => <a>{art.header}</a> )}
+                {posts.map(art => <a>{art.header}</a> )}
               </div>
             </Col>
           </Row>

@@ -17,7 +17,7 @@ export default (ctx) => {
         const newPost = new Post({
             header,
             text,
-            user
+            user: req.user._id,
         })
 
         return newPost.save()
