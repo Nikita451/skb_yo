@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import {inject, observer} from 'mobx-react'
 import { Row, Col, Card, CardBlock, Modal, Button } from 'react-bootstrap';
 import TinyMCE from 'react-tinymce'
+import Link from 'lsk-general/General/Link';
+import importcss from 'importcss'
 
-@inject('posts', 'user')
+
+@inject( 'user', 'posts')
 @observer
+@importcss(require('./PostsPage.css'))
 export default class PostsPage extends Component {
 
   constructor(props) {
@@ -32,7 +36,6 @@ export default class PostsPage extends Component {
       } 
       let Post = this.props.posts.Post
       this.props.posts.add( new Post( post.header, post.text, post.user ) )
-      
       this.close()
       return false;
   }
@@ -46,9 +49,11 @@ export default class PostsPage extends Component {
   }
 
   render() {
-    const {posts} = this.props.posts
+    let {posts} = this.props
+    const {_id} = this.props.user
+    posts = posts.getByUser(_id)
     return (
-      <div>
+      <div styleName="root">
       <Row>
         <Col md={6} xs={12} >
           <button onClick={this.open} className="btn btn-info">Новая публикация</button>
@@ -59,7 +64,9 @@ export default class PostsPage extends Component {
           <Card style={{ marginTop: 20 }}>
             <CardBlock>
               {posts.length == 0 && <p> Здесь будут твои публикации </p>} 
-              {posts.map( post => <p> {post.header} | {post.text} |r {post.user} </p> )}
+              {posts.map( post => 
+                  <p key={post._id}> <Link href={`/post/${post._id}`}> {post.header} </Link> </p> 
+              )}
             </CardBlock>
           </Card>
         </Col>

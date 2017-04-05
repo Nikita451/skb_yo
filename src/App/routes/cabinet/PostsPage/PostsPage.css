@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Marck+Script');
+@import url('https://fonts.googleapis.com/css?family=Jura|Marck+Script');
+
+
+.root {
+    a {
+        color: #666;
+        text-align: center;
+        font-family: 'Marck Script', cursive;
+        font-size: 3rem;
+        width: 10rem;
+    }
+}

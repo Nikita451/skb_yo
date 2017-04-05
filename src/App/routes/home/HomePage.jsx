@@ -23,15 +23,6 @@ export default class HomePage extends Component {
   render() {
     const { site } = this.props.config;
     const {posts} = this.props.posts
-    const articles = [ 
-      {header:"Статья 1"},
-      {header:"Статья 1"},
-      {header:"Статья 1"},
-      {header:"Статья 1"},
-      {header:"Статья 1"},
-      {header:"Статья 1"},
-      {header:"Статья 1"},
-    ]
     return (
       <div styleName="da">
       <Slide
@@ -55,9 +46,6 @@ export default class HomePage extends Component {
              {!this.props.app.auth.isAuth && 
               <Link href="/auth/signup" className="btn btn-success">Зарегистрироваться</Link>
              }
-             {this.props.app.auth.isAuth &&
-               <p> Добро пожаловать в Блог, {this.props.app.user.name} ! </p>
-             }
              </p>
             </Col>
           </Row>
@@ -73,7 +61,7 @@ export default class HomePage extends Component {
             <Col md={12} mdOffset={0}>
               <div styleName='articles'>
                 <h3>Список последних статей</h3>
-                {posts.map(art => <a>{art.header}</a> )}
+                {posts.map(p => <Link key={p._id} href={`/post/${p._id}`}>{p.header}</Link> )}
               </div>
             </Col>
           </Row>

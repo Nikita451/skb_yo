@@ -1,21 +1,33 @@
 import {observable, computed, action} from 'mobx'
+import { set, clone } from 'lodash';
 
 export class Post {
     @observable header;
     @observable text;
     @observable user;
     @observable _id;
+    @observable updatedAt;
     constructor(header, text, user) {
         this.header = header
         this.text = text
         this.user = user
-        this._id = undefined
     }
 
     @action
     set(header, text) {
         this.header = header
         this.text = text
+    }
+
+    @action
+    update(post) {
+        // this.store.log.info('incoming user', user);
+        //if (!user) return this.reset();
+        if (!post) return
+        for (const item in post) {
+            set(this, item, post[item]);
+        }
+        return true;
     }
 
     toObject() {
@@ -36,25 +48,23 @@ export default class Posts {
     }
 
     @action
-    add(todo) {
+    async add(todo) {
+        let data = await this.store.api.addPost(todo.toObject())
+        todo.update(data)
         this.posts.push( todo )
-        this.store.api.addPost(todo.toObject())
+    }
+    
+    getByUser(id_user) {
+        return this.posts.filter( p => p.user && p.user._id == id_user || p.user == id_user )
     }
 
-    @action
-    update(id, newPost) {
-        const {header, } = newPost
+    getById(id) {
         for (let i=0; i < this.posts.length; i++) {
-            let post = this.posts[i]
-            if (post.id == id) {
-                post.set( header, text )
-                return;
+            if (this.posts[i]._id == id) {
+                return this.posts[i]
             }
         }
-    }
-
-    getByUser(id_user) {
-        return this.posts.filter( p => p.id_user == id_user )
+        return null
     }
 
 }

@@ -21,11 +21,11 @@ export default config.extend({
       secure: true,
       auth: {
         user: 'user@yandex.ru',
-        pass: 'password',
+        pass: 'pass',
       },
     },
     options: {
-      from: '"example" <example@gmail.com>',
+      from: 'nikita451@yandex.ru',
     },
   },
   upload: {

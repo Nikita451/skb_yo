@@ -111,7 +111,7 @@ export default class ApiClient extends ApiClientBase {
       method: 'POST',
       body
     });
-    return res;
+    return res.data;
   }
   
 }

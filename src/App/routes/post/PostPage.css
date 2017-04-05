@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Marck+Script');
+@import url('https://fonts.googleapis.com/css?family=Jura|Marck+Script');
+
+
+.detail {
+    color: #eee;
+    h1 {
+        color: #fff;
+        text-align: center;
+        font-family: 'Marck Script', cursive;
+        font-size: 5em;
+    }
+
+    .description {
+        color: #666;
+        background: #fff;
+        margin-top: 10rem;
+        margin-bottom: 2rem;
+        font-family: 'Marck Script', cursive;
+        font-family: 'Jura', sans-serif;
+        box-shadow: 1px 1px 5px #fff;
+        border-radius: 5px;
+        padding: 20px;
+    }
+
+    .toMain {
+        text-align: center;
+    }
+
+    .dopInfo {
+        .date {
+            font-family: 'Marck Script', cursive;
+            color: #eee;
+            font-size: 3rem;
+            font-weight: bold;
+            float: right;
+        }
+        .author {
+            font-family: 'Marck Script', cursive;
+            color: #eee;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+    }
+
+}

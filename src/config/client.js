@@ -1,8 +1,8 @@
 import config from 'lego-starter-kit/config/client';
 export default config.extend({
   site: {
-    abbr: 'TST',
-    title: 'The Site Title',
+    abbr: 'БАП',
+    title: 'Блог Артура Пирожкова',
     description: 'The Description',
     copyright: 'Copyright &copy; 2016-2017',
     slide: {

@@ -17,6 +17,10 @@ export default {
       ...require('./home').default,
     },
     {
+      path: '/post/:id',
+      ...require('./post').default,
+    },
+    {
       path: '/auth',
       ...require('./auth').default,
     },

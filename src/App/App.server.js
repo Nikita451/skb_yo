@@ -75,10 +75,15 @@ export default class App extends ReactApp {
   }
 
   async getHtmlProps(req) {
-    let posts = await this.models.Post.find({})
+    let posts = await this.models.Post.find({}).populate('user')
     
     let obj = await super.getHtmlProps(req)
-    obj.ctx.rootState.posts = posts.map( p => p.toJSON() )
+    obj.ctx.rootState.posts = posts.map( p => { 
+      //let user = p.user.toJSON()
+      p = p.toJSON()
+      //p.user = user
+      return p
+    })
     return obj;
   }
 

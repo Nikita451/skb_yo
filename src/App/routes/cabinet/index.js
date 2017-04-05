@@ -73,7 +73,8 @@ export default {
     },
     {
       path: '/posts',
-      async action({ page }) {
+      async action({ page, appStore }) {
+        
         return page
           .meta({
             title: 'Публикации',
